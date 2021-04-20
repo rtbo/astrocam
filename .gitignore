@@ -1,5 +1,5 @@
 doc/
 test/
-hardware/datasheet/
-hardware/ecad_files/
+boards/datasheet/
+boards/ecad_files/
 *-bak
