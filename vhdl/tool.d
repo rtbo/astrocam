@@ -1,16 +1,17 @@
 // Tool to build and develop the VHDL in this folder
-// Build command: dmd tool.d -oftool -O -release
+// Build command: dmd tool.d -oftool -O -release (or use mktool.sh)
 // To get help: ./tool help
 module tool;
 
 import std.algorithm;
 import std.array;
 import std.file;
+import std.path;
 import std.process;
 import std.stdio;
 
 // Commands recognized by this tool
-const commands = ["import", "make", "run", "wave"];
+const commands = ["import", "make", "run", "wave", "clean"];
 // Targets recognized by this tool
 const targets = ["ccd_drive_tb"];
 
@@ -28,8 +29,9 @@ int usage(string prog, int result = 0, File output = stdout)
     output.writefln("  make [TARGETS]  Build targets");
     output.writefln("  run [TARGETS]   Run simulation targets");
     output.writefln("  wave [TARGET]   Run GTKWave for the VCD file associated to target");
-    output.writefln("  mrw [TARGET]    Shortcut for \"make run wave [TARGET]\"");
+    output.writefln("  imr [TARGETS]   Shortcut for \"import make run [TARGET]\"");
     output.writefln("  mr [TARGETS]    Shortcut for \"make run [TARGET]\"");
+    output.writefln("  mrw [TARGET]    Shortcut for \"make run wave [TARGET]\"");
     output.writefln("");
     output.writefln("If more than one command is provided, they are all run in the given order.");
     output.writefln(
@@ -70,13 +72,17 @@ int main(string[] args)
         {
             return usage(args[0]);
         }
-        else if (arg == "mrw")
+        else if (arg == "imr")
         {
-            cmds ~= ["make", "run", "wave"];
+            cmds ~= ["import", "make", "run"];
         }
         else if (arg == "mr")
         {
             cmds ~= ["make", "run"];
+        }
+        else if (arg == "mrw")
+        {
+            cmds ~= ["make", "run", "wave"];
         }
         else if (arg == "--")
         {
@@ -175,6 +181,25 @@ int main(string[] args)
                 stderr.writefln("error during wave command of %s", tgts[0]);
                 return code;
             }
+        }
+        else if (cmd == "clean")
+        {
+            rmdirRecurse("work");
+            const patterns = ["*.vcd", "*.o"] ~ targets;
+            string[] toremove;
+
+            foreach (entry; dirEntries(".", SpanMode.breadth))
+            {
+                foreach (pattern; patterns)
+                {
+                    if (globMatch(entry.name, pattern))
+                    {
+                        toremove ~= entry.name;
+                    }
+                }
+            }
+
+            toremove.each!(f => remove(f));
         }
     }
 
