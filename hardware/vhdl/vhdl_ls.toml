@@ -1,0 +1,4 @@
+[libraries]
+astrocam.files = [
+  '*.vhd',
+]
