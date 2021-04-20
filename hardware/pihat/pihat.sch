@@ -1,0 +1,343 @@
+EESchema Schematic File Version 4
+EELAYER 30 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 1 3
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L Connector_Generic:Conn_02x20_Odd_Even J?
+U 1 1 5EB829CD
+P 1600 3650
+F 0 "J?" H 1650 4767 50  0000 C CNN
+F 1 "RPi GPIO" H 1650 4676 50  0000 C CNN
+F 2 "" H 1600 3650 50  0001 C CNN
+F 3 "~" H 1600 3650 50  0001 C CNN
+	1    1600 3650
+	1    0    0    -1  
+$EndComp
+$Comp
+L Connector:Conn_01x02_Female J?
+U 1 1 5EC0FD0F
+P 1050 1050
+F 0 "J?" H 942 1235 50  0000 C CNN
+F 1 "Battery" H 942 1144 50  0000 C CNN
+F 2 "" H 1050 1050 50  0001 C CNN
+F 3 "~" H 1050 1050 50  0001 C CNN
+	1    1050 1050
+	-1   0    0    -1  
+$EndComp
+Wire Wire Line
+	1250 1050 1650 1050
+Wire Wire Line
+	1650 1050 1650 1150
+$Comp
+L power:GND #PWR?
+U 1 1 5EBC8519
+P 1400 1600
+F 0 "#PWR?" H 1400 1350 50  0001 C CNN
+F 1 "GND" H 1405 1427 50  0000 C CNN
+F 2 "" H 1400 1600 50  0001 C CNN
+F 3 "" H 1400 1600 50  0001 C CNN
+	1    1400 1600
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1650 1450 1650 1550
+Wire Wire Line
+	1650 1550 1400 1550
+Wire Wire Line
+	1400 1550 1400 1600
+Wire Wire Line
+	1250 1150 1400 1150
+Wire Wire Line
+	1400 1150 1400 1550
+Connection ~ 1400 1550
+$Comp
+L Switch:SW_DPST SW?
+U 1 1 5EBD075A
+P 2600 2050
+F 0 "SW?" H 2600 2375 50  0000 C CNN
+F 1 "ON/OFF" H 2600 2284 50  0000 C CNN
+F 2 "" H 2600 2050 50  0001 C CNN
+F 3 "~" H 2600 2050 50  0001 C CNN
+	1    2600 2050
+	1    0    0    -1  
+$EndComp
+$Comp
+L Switch:SW_SPST SW?
+U 1 1 5EBEF980
+P 4950 2150
+F 0 "SW?" H 4950 2385 50  0000 C CNN
+F 1 "PELTIER ON/OFF" H 4950 2294 50  0000 C CNN
+F 2 "" H 4950 2150 50  0001 C CNN
+F 3 "~" H 4950 2150 50  0001 C CNN
+	1    4950 2150
+	1    0    0    -1  
+$EndComp
+$Comp
+L Connector:Conn_Coaxial_Power J?
+U 1 1 5EC0D642
+P 1650 1250
+F 0 "J?" H 1738 1246 50  0000 L CNN
+F 1 "DC Adapter" H 1738 1155 50  0000 L CNN
+F 2 "" H 1650 1200 50  0001 C CNN
+F 3 "~" H 1650 1200 50  0001 C CNN
+	1    1650 1250
+	1    0    0    -1  
+$EndComp
+Text Notes 1200 750  0    50   ~ 0
+External power supply\n9 to 12V - 30W
+Wire Wire Line
+	1650 1050 2250 1050
+Wire Wire Line
+	2250 1050 2250 1950
+Wire Wire Line
+	2250 1950 2400 1950
+Connection ~ 1650 1050
+Wire Wire Line
+	1900 2750 2250 2750
+Wire Wire Line
+	2250 2750 2250 2150
+Wire Wire Line
+	2250 2150 2400 2150
+Wire Wire Line
+	1900 2850 2250 2850
+Wire Wire Line
+	2250 2850 2250 2750
+Connection ~ 2250 2750
+$Comp
+L power:VDC #PWR?
+U 1 1 5EC2D129
+P 3750 1950
+F 0 "#PWR?" H 3750 1850 50  0001 C CNN
+F 1 "VDC" H 3750 2225 50  0000 C CNN
+F 2 "" H 3750 1950 50  0001 C CNN
+F 3 "" H 3750 1950 50  0001 C CNN
+	1    3750 1950
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2800 1950 2950 1950
+Wire Wire Line
+	2800 2150 2950 2150
+Wire Wire Line
+	3550 2050 3750 2050
+Wire Wire Line
+	3750 2050 3750 1950
+$Comp
+L power:+BATT #PWR?
+U 1 1 5EC8B4FD
+P 2950 1650
+F 0 "#PWR?" H 2950 1500 50  0001 C CNN
+F 1 "+BATT" H 2965 1823 50  0000 C CNN
+F 2 "" H 2950 1650 50  0001 C CNN
+F 3 "" H 2950 1650 50  0001 C CNN
+	1    2950 1650
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2950 1650 2950 1950
+Connection ~ 2950 1950
+Wire Wire Line
+	2950 1950 3150 1950
+Wire Wire Line
+	3150 2400 2950 2400
+Wire Wire Line
+	2950 2400 2950 2150
+Connection ~ 2950 2150
+Wire Wire Line
+	2950 2150 3150 2150
+$Comp
+L power:+5V #PWR?
+U 1 1 5ECA7D3F
+P 3750 2400
+F 0 "#PWR?" H 3750 2250 50  0001 C CNN
+F 1 "+5V" H 3765 2573 50  0000 C CNN
+F 2 "" H 3750 2400 50  0001 C CNN
+F 3 "" H 3750 2400 50  0001 C CNN
+	1    3750 2400
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3750 2400 3750 2500
+Wire Wire Line
+	3750 2500 3550 2500
+Text Label 1000 4050 0    50   ~ 0
+ID_SD
+Text Label 2300 4050 2    50   ~ 0
+ID_SC
+Wire Wire Line
+	2300 4050 1900 4050
+Wire Wire Line
+	1400 4050 1000 4050
+Text Label 5600 6600 2    50   ~ 0
+ID_SD
+Text Label 5600 6450 2    50   ~ 0
+ID_SC
+Wire Wire Line
+	5600 6450 5200 6450
+Wire Wire Line
+	5600 6600 5200 6600
+$Comp
+L power:+3.3V #PWR?
+U 1 1 5ED0C35A
+P 5450 6050
+F 0 "#PWR?" H 5450 5900 50  0001 C CNN
+F 1 "+3.3V" H 5465 6223 50  0000 C CNN
+F 2 "" H 5450 6050 50  0001 C CNN
+F 3 "" H 5450 6050 50  0001 C CNN
+	1    5450 6050
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5450 6050 5450 6150
+Wire Wire Line
+	5450 6150 5200 6150
+$Comp
+L power:GND #PWR?
+U 1 1 5ED11357
+P 4000 6800
+F 0 "#PWR?" H 4000 6550 50  0001 C CNN
+F 1 "GND" H 4005 6627 50  0000 C CNN
+F 2 "" H 4000 6800 50  0001 C CNN
+F 3 "" H 4000 6800 50  0001 C CNN
+	1    4000 6800
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4000 6800 4000 6600
+Wire Wire Line
+	4000 6600 4200 6600
+$Comp
+L power:+3.3V #PWR?
+U 1 1 5ED165BF
+P 700 2700
+F 0 "#PWR?" H 700 2550 50  0001 C CNN
+F 1 "+3.3V" H 715 2873 50  0000 C CNN
+F 2 "" H 700 2700 50  0001 C CNN
+F 3 "" H 700 2700 50  0001 C CNN
+	1    700  2700
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	700  2750 700  2700
+Wire Wire Line
+	700  2750 1400 2750
+Wire Wire Line
+	1400 3550 700  3550
+Wire Wire Line
+	700  3550 700  2750
+Connection ~ 700  2750
+$Comp
+L power:GND #PWR?
+U 1 1 5ED34355
+P 800 4800
+F 0 "#PWR?" H 800 4550 50  0001 C CNN
+F 1 "GND" H 805 4627 50  0000 C CNN
+F 2 "" H 800 4800 50  0001 C CNN
+F 3 "" H 800 4800 50  0001 C CNN
+	1    800  4800
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1400 3150 800  3150
+Wire Wire Line
+	800  3150 800  3950
+$Comp
+L power:GND #PWR?
+U 1 1 5ED39F2F
+P 2450 4800
+F 0 "#PWR?" H 2450 4550 50  0001 C CNN
+F 1 "GND" H 2455 4627 50  0000 C CNN
+F 2 "" H 2450 4800 50  0001 C CNN
+F 3 "" H 2450 4800 50  0001 C CNN
+	1    2450 4800
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1900 2950 2450 2950
+Wire Wire Line
+	2450 2950 2450 3350
+Wire Wire Line
+	1400 3950 800  3950
+Connection ~ 800  3950
+Wire Wire Line
+	800  3950 800  4650
+Wire Wire Line
+	1400 4650 800  4650
+Connection ~ 800  4650
+Wire Wire Line
+	800  4650 800  4800
+Wire Wire Line
+	1900 3350 2450 3350
+Connection ~ 2450 3350
+Wire Wire Line
+	2450 3350 2450 3650
+Wire Wire Line
+	1900 3650 2450 3650
+Connection ~ 2450 3650
+Wire Wire Line
+	2450 3650 2450 4150
+Wire Wire Line
+	1900 4150 2450 4150
+Connection ~ 2450 4150
+Wire Wire Line
+	2450 4150 2450 4350
+Wire Wire Line
+	1900 4350 2450 4350
+Connection ~ 2450 4350
+Wire Wire Line
+	2450 4350 2450 4800
+$Comp
+L power:+5VP #PWR?
+U 1 1 5ED694B3
+P 4450 2000
+F 0 "#PWR?" H 4450 1850 50  0001 C CNN
+F 1 "+5VP" H 4465 2173 50  0000 C CNN
+F 2 "" H 4450 2000 50  0001 C CNN
+F 3 "" H 4450 2000 50  0001 C CNN
+	1    4450 2000
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4450 2000 4450 2150
+Wire Wire Line
+	4450 2150 4750 2150
+$Sheet
+S 9000 2750 1200 950 
+U 5EBB2A08
+F0 "Power Converters" 50
+F1 "Power_Conv.sch" 50
+$EndSheet
+$Comp
+L Astrocam:CAV24C32W U?
+U 1 1 5EB824E2
+P 4700 6350
+F 0 "U?" H 4700 6865 50  0000 C CNN
+F 1 "CAV24C32W" H 4700 6774 50  0000 C CNN
+F 2 "Package_SO:SOIC-8_3.9x4.9mm_P1.27mm" H 4700 6350 50  0001 C CNN
+F 3 "" H 4700 6350 50  0001 C CNN
+	1    4700 6350
+	1    0    0    -1  
+$EndComp
+$Comp
+L Astrocam:DP_3POS_SW SW?
+U 1 1 5EC53CFD
+P 3350 2300
+F 0 "SW?" H 3350 1765 50  0000 C CNN
+F 1 "Power Mode" H 3350 1856 50  0000 C CNN
+F 2 "" H 3350 2200 50  0001 C CNN
+F 3 "" H 3350 2200 50  0001 C CNN
+	1    3350 2300
+	-1   0    0    1   
+$EndComp
+$EndSCHEMATC

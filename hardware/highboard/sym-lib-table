@@ -1,0 +1,3 @@
+(sym_lib_table
+  (lib (name astrocam)(type Legacy)(uri /home/remi/projs/astrocam/hardware/astrocam.lib)(options "")(descr ""))
+)

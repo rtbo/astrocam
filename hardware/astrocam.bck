@@ -1,0 +1,27 @@
+EESchema-DOCLIB  Version 2.0
+#
+$CMP CAV24C32W
+D 32-Kb I2C CMOS EEPROM
+$ENDCMP
+#
+$CMP DMG2305UX
+D P-Channel Enhancement MOSFET
+$ENDCMP
+#
+$CMP DP_3POS_SW
+D 3 Position switch - Dual pole
+$ENDCMP
+#
+$CMP LM2678-5
+D Step down voltage regulator - Simple switcher
+$ENDCMP
+#
+$CMP PE-65301
+D Flyback transformer
+$ENDCMP
+#
+$CMP PE-6530X
+D Flyback transformer
+$ENDCMP
+#
+#End Doc Library

@@ -1,0 +1,765 @@
+EESchema Schematic File Version 4
+EELAYER 30 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 2 2
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L Analog_Switch:MAX333A U?
+U 1 1 607CBD34
+P 2050 3000
+F 0 "U?" H 2050 3149 50  0000 C CNN
+F 1 "MAX333A" H 2050 3240 50  0000 C CNN
+F 2 "" H 2050 3000 50  0001 C CNN
+F 3 "https://datasheets.maximintegrated.com/en/ds/MAX333A.pdf" H 2050 3000 50  0001 C CNN
+	1    2050 3000
+	-1   0    0    1   
+$EndComp
+$Comp
+L Analog_Switch:MAX333A U?
+U 2 1 607CCEF0
+P 2050 3950
+F 0 "U?" H 2050 4099 50  0000 C CNN
+F 1 "MAX333A" H 2050 4190 50  0000 C CNN
+F 2 "" H 2050 3950 50  0001 C CNN
+F 3 "https://datasheets.maximintegrated.com/en/ds/MAX333A.pdf" H 2050 3950 50  0001 C CNN
+	2    2050 3950
+	-1   0    0    1   
+$EndComp
+$Comp
+L Analog_Switch:MAX333A U?
+U 3 1 607CF45E
+P 2050 4950
+F 0 "U?" H 2050 5099 50  0000 C CNN
+F 1 "MAX333A" H 2050 5190 50  0000 C CNN
+F 2 "" H 2050 4950 50  0001 C CNN
+F 3 "https://datasheets.maximintegrated.com/en/ds/MAX333A.pdf" H 2050 4950 50  0001 C CNN
+	3    2050 4950
+	-1   0    0    1   
+$EndComp
+$Comp
+L Analog_Switch:MAX333A U?
+U 4 1 607D1740
+P 2050 5850
+F 0 "U?" H 2050 5999 50  0000 C CNN
+F 1 "MAX333A" H 2050 6090 50  0000 C CNN
+F 2 "" H 2050 5850 50  0001 C CNN
+F 3 "https://datasheets.maximintegrated.com/en/ds/MAX333A.pdf" H 2050 5850 50  0001 C CNN
+	4    2050 5850
+	-1   0    0    1   
+$EndComp
+Text HLabel 1900 2500 0    50   Input ~ 0
+XSHT
+Text HLabel 1900 3450 0    50   Input ~ 0
+XV2
+Text HLabel 1900 4450 0    50   Input ~ 0
+XV4
+Wire Wire Line
+	1900 2500 2050 2500
+Wire Wire Line
+	2050 2500 2050 2600
+$Comp
+L astrocam:-7.5V #PWR?
+U 1 1 607E30C9
+P 1150 2700
+F 0 "#PWR?" H 1150 2800 50  0001 C CNN
+F 1 "-7.5V" H 1165 2873 50  0000 C CNN
+F 2 "" H 1150 2700 50  0001 C CNN
+F 3 "" H 1150 2700 50  0001 C CNN
+	1    1150 2700
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+15V #PWR?
+U 1 1 607E3526
+P 1450 2700
+F 0 "#PWR?" H 1450 2550 50  0001 C CNN
+F 1 "+15V" H 1465 2873 50  0000 C CNN
+F 2 "" H 1450 2700 50  0001 C CNN
+F 3 "" H 1450 2700 50  0001 C CNN
+	1    1450 2700
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1450 2700 1450 2800
+Wire Wire Line
+	1450 2800 1750 2800
+Wire Wire Line
+	1150 2700 1150 3000
+Wire Wire Line
+	1150 3000 1750 3000
+Wire Wire Line
+	1900 3450 2050 3450
+Wire Wire Line
+	2050 3450 2050 3550
+Wire Wire Line
+	1900 4450 2050 4450
+Wire Wire Line
+	2050 4450 2050 4550
+$Comp
+L astrocam:-7.5V #PWR?
+U 1 1 607E6EBE
+P 1450 3650
+F 0 "#PWR?" H 1450 3750 50  0001 C CNN
+F 1 "-7.5V" H 1465 3823 50  0000 C CNN
+F 2 "" H 1450 3650 50  0001 C CNN
+F 3 "" H 1450 3650 50  0001 C CNN
+	1    1450 3650
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 607E748F
+P 1450 4050
+F 0 "#PWR?" H 1450 3800 50  0001 C CNN
+F 1 "GND" H 1455 3877 50  0000 C CNN
+F 2 "" H 1450 4050 50  0001 C CNN
+F 3 "" H 1450 4050 50  0001 C CNN
+	1    1450 4050
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 607E8089
+P 1450 5050
+F 0 "#PWR?" H 1450 4800 50  0001 C CNN
+F 1 "GND" H 1455 4877 50  0000 C CNN
+F 2 "" H 1450 5050 50  0001 C CNN
+F 3 "" H 1450 5050 50  0001 C CNN
+	1    1450 5050
+	1    0    0    -1  
+$EndComp
+$Comp
+L astrocam:-7.5V #PWR?
+U 1 1 607E84AE
+P 1450 4600
+F 0 "#PWR?" H 1450 4700 50  0001 C CNN
+F 1 "-7.5V" H 1465 4773 50  0000 C CNN
+F 2 "" H 1450 4600 50  0001 C CNN
+F 3 "" H 1450 4600 50  0001 C CNN
+	1    1450 4600
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1450 4600 1450 4750
+Wire Wire Line
+	1450 4750 1750 4750
+Wire Wire Line
+	1450 5050 1450 4950
+Wire Wire Line
+	1450 4950 1750 4950
+Wire Wire Line
+	1450 3650 1450 3750
+Wire Wire Line
+	1450 3750 1750 3750
+Wire Wire Line
+	1450 4050 1450 3950
+Wire Wire Line
+	1450 3950 1750 3950
+Text HLabel 2800 2900 2    50   Output ~ 0
+SHT
+Wire Wire Line
+	2800 2900 2350 2900
+Text HLabel 2800 3850 2    50   Output ~ 0
+V2
+Text HLabel 2800 4850 2    50   Output ~ 0
+V4
+Wire Wire Line
+	2800 3850 2350 3850
+Wire Wire Line
+	2800 4850 2350 4850
+$Comp
+L Analog_Switch:MAX333A U?
+U 1 1 6080C1CE
+P 4950 4150
+F 0 "U?" H 4950 4299 50  0000 C CNN
+F 1 "MAX333A" H 4950 4390 50  0000 C CNN
+F 2 "" H 4950 4150 50  0001 C CNN
+F 3 "https://datasheets.maximintegrated.com/en/ds/MAX333A.pdf" H 4950 4150 50  0001 C CNN
+	1    4950 4150
+	-1   0    0    1   
+$EndComp
+$Comp
+L Analog_Switch:MAX333A U?
+U 2 1 6080F8F9
+P 6200 3150
+F 0 "U?" H 6200 3299 50  0000 C CNN
+F 1 "MAX333A" H 6200 3390 50  0000 C CNN
+F 2 "" H 6200 3150 50  0001 C CNN
+F 3 "https://datasheets.maximintegrated.com/en/ds/MAX333A.pdf" H 6200 3150 50  0001 C CNN
+	2    6200 3150
+	-1   0    0    1   
+$EndComp
+$Comp
+L Analog_Switch:MAX333A U?
+U 3 1 60812755
+P 6200 4050
+F 0 "U?" H 6200 4199 50  0000 C CNN
+F 1 "MAX333A" H 6200 4290 50  0000 C CNN
+F 2 "" H 6200 4050 50  0001 C CNN
+F 3 "https://datasheets.maximintegrated.com/en/ds/MAX333A.pdf" H 6200 4050 50  0001 C CNN
+	3    6200 4050
+	-1   0    0    1   
+$EndComp
+$Comp
+L Analog_Switch:MAX333A U?
+U 4 1 6081595E
+P 6200 5000
+F 0 "U?" H 6200 5149 50  0000 C CNN
+F 1 "MAX333A" H 6200 5240 50  0000 C CNN
+F 2 "" H 6200 5000 50  0001 C CNN
+F 3 "https://datasheets.maximintegrated.com/en/ds/MAX333A.pdf" H 6200 5000 50  0001 C CNN
+	4    6200 5000
+	-1   0    0    1   
+$EndComp
+Text HLabel 4700 3600 0    50   Input ~ 0
+XV1
+Text HLabel 6000 2650 0    50   Input ~ 0
+XV1A
+Text HLabel 6000 3550 0    50   Input ~ 0
+XV1B
+Text HLabel 6000 4500 0    50   Input ~ 0
+XV1C
+Wire Wire Line
+	4700 3600 4950 3600
+Wire Wire Line
+	4950 3600 4950 3750
+$Comp
+L astrocam:-7.5V #PWR?
+U 1 1 6081DDE4
+P 4250 3800
+F 0 "#PWR?" H 4250 3900 50  0001 C CNN
+F 1 "-7.5V" H 4265 3973 50  0000 C CNN
+F 2 "" H 4250 3800 50  0001 C CNN
+F 3 "" H 4250 3800 50  0001 C CNN
+	1    4250 3800
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 6081E24E
+P 4250 4300
+F 0 "#PWR?" H 4250 4050 50  0001 C CNN
+F 1 "GND" H 4255 4127 50  0000 C CNN
+F 2 "" H 4250 4300 50  0001 C CNN
+F 3 "" H 4250 4300 50  0001 C CNN
+	1    4250 4300
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4250 4300 4250 4150
+Wire Wire Line
+	4250 4150 4650 4150
+Wire Wire Line
+	4250 3800 4250 3950
+Wire Wire Line
+	4250 3950 4650 3950
+$Comp
+L power:+15V #PWR?
+U 1 1 6083638C
+P 5500 2650
+F 0 "#PWR?" H 5500 2500 50  0001 C CNN
+F 1 "+15V" H 5515 2823 50  0000 C CNN
+F 2 "" H 5500 2650 50  0001 C CNN
+F 3 "" H 5500 2650 50  0001 C CNN
+	1    5500 2650
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5250 4050 5700 4050
+Wire Wire Line
+	5700 4050 5700 3150
+Wire Wire Line
+	5700 3150 5900 3150
+Connection ~ 5700 4050
+Wire Wire Line
+	5700 4050 5900 4050
+Wire Wire Line
+	5700 4050 5700 5000
+Wire Wire Line
+	5700 5000 5900 5000
+Wire Wire Line
+	5500 2650 5500 2950
+Wire Wire Line
+	5500 2950 5900 2950
+Wire Wire Line
+	5500 2950 5500 3850
+Wire Wire Line
+	5500 3850 5900 3850
+Connection ~ 5500 2950
+Wire Wire Line
+	5500 3850 5500 4800
+Wire Wire Line
+	5500 4800 5900 4800
+Connection ~ 5500 3850
+Wire Wire Line
+	6000 2650 6200 2650
+Wire Wire Line
+	6200 2650 6200 2750
+Wire Wire Line
+	6000 3550 6200 3550
+Wire Wire Line
+	6200 3550 6200 3650
+Wire Wire Line
+	6000 4500 6200 4500
+Wire Wire Line
+	6200 4500 6200 4600
+Text HLabel 6800 3050 2    50   Output ~ 0
+V1A
+Text HLabel 6800 3950 2    50   Output ~ 0
+V1B
+Text HLabel 6800 4900 2    50   Output ~ 0
+V1C
+Wire Wire Line
+	6800 3050 6500 3050
+Wire Wire Line
+	6500 3950 6800 3950
+Wire Wire Line
+	6500 4900 6800 4900
+NoConn ~ 2350 5750
+NoConn ~ 2050 5450
+NoConn ~ 1750 5650
+NoConn ~ 1750 5850
+$Comp
+L Analog_Switch:MAX333A U?
+U 5 1 608990DA
+P 9150 1400
+F 0 "U?" V 8833 1400 50  0000 C CNN
+F 1 "MAX333A" V 8924 1400 50  0000 C CNN
+F 2 "" H 9150 1400 50  0001 C CNN
+F 3 "https://datasheets.maximintegrated.com/en/ds/MAX333A.pdf" H 9150 1400 50  0001 C CNN
+	5    9150 1400
+	0    1    1    0   
+$EndComp
+$Comp
+L Analog_Switch:MAX333A U?
+U 1 1 608990E0
+P 8400 4150
+F 0 "U?" H 8400 4299 50  0000 C CNN
+F 1 "MAX333A" H 8400 4390 50  0000 C CNN
+F 2 "" H 8400 4150 50  0001 C CNN
+F 3 "https://datasheets.maximintegrated.com/en/ds/MAX333A.pdf" H 8400 4150 50  0001 C CNN
+	1    8400 4150
+	-1   0    0    1   
+$EndComp
+$Comp
+L Analog_Switch:MAX333A U?
+U 2 1 608990E6
+P 9650 3150
+F 0 "U?" H 9650 3299 50  0000 C CNN
+F 1 "MAX333A" H 9650 3390 50  0000 C CNN
+F 2 "" H 9650 3150 50  0001 C CNN
+F 3 "https://datasheets.maximintegrated.com/en/ds/MAX333A.pdf" H 9650 3150 50  0001 C CNN
+	2    9650 3150
+	-1   0    0    1   
+$EndComp
+$Comp
+L Analog_Switch:MAX333A U?
+U 3 1 608990EC
+P 9650 4050
+F 0 "U?" H 9650 4199 50  0000 C CNN
+F 1 "MAX333A" H 9650 4290 50  0000 C CNN
+F 2 "" H 9650 4050 50  0001 C CNN
+F 3 "https://datasheets.maximintegrated.com/en/ds/MAX333A.pdf" H 9650 4050 50  0001 C CNN
+	3    9650 4050
+	-1   0    0    1   
+$EndComp
+$Comp
+L Analog_Switch:MAX333A U?
+U 4 1 608990F2
+P 9650 5000
+F 0 "U?" H 9650 5149 50  0000 C CNN
+F 1 "MAX333A" H 9650 5240 50  0000 C CNN
+F 2 "" H 9650 5000 50  0001 C CNN
+F 3 "https://datasheets.maximintegrated.com/en/ds/MAX333A.pdf" H 9650 5000 50  0001 C CNN
+	4    9650 5000
+	-1   0    0    1   
+$EndComp
+$Comp
+L astrocam:-7.5V #PWR?
+U 1 1 608990F8
+P 8100 1250
+F 0 "#PWR?" H 8100 1350 50  0001 C CNN
+F 1 "-7.5V" H 8115 1423 50  0000 C CNN
+F 2 "" H 8100 1250 50  0001 C CNN
+F 3 "" H 8100 1250 50  0001 C CNN
+	1    8100 1250
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 608990FE
+P 8550 1950
+F 0 "#PWR?" H 8550 1700 50  0001 C CNN
+F 1 "GND" H 8555 1777 50  0000 C CNN
+F 2 "" H 8550 1950 50  0001 C CNN
+F 3 "" H 8550 1950 50  0001 C CNN
+	1    8550 1950
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+15V #PWR?
+U 1 1 60899104
+P 10000 1200
+F 0 "#PWR?" H 10000 1050 50  0001 C CNN
+F 1 "+15V" H 10015 1373 50  0000 C CNN
+F 2 "" H 10000 1200 50  0001 C CNN
+F 3 "" H 10000 1200 50  0001 C CNN
+	1    10000 1200
+	1    0    0    -1  
+$EndComp
+Text HLabel 8150 3600 0    50   Input ~ 0
+XV3
+Text HLabel 9450 2650 0    50   Input ~ 0
+XV3A
+Text HLabel 9450 3550 0    50   Input ~ 0
+XV3B
+Text HLabel 9450 4500 0    50   Input ~ 0
+XV3C
+Wire Wire Line
+	8150 3600 8400 3600
+Wire Wire Line
+	8400 3600 8400 3750
+$Comp
+L astrocam:-7.5V #PWR?
+U 1 1 60899110
+P 7700 3800
+F 0 "#PWR?" H 7700 3900 50  0001 C CNN
+F 1 "-7.5V" H 7715 3973 50  0000 C CNN
+F 2 "" H 7700 3800 50  0001 C CNN
+F 3 "" H 7700 3800 50  0001 C CNN
+	1    7700 3800
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 60899116
+P 7700 4300
+F 0 "#PWR?" H 7700 4050 50  0001 C CNN
+F 1 "GND" H 7705 4127 50  0000 C CNN
+F 2 "" H 7700 4300 50  0001 C CNN
+F 3 "" H 7700 4300 50  0001 C CNN
+	1    7700 4300
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	7700 4300 7700 4150
+Wire Wire Line
+	7700 4150 8100 4150
+Wire Wire Line
+	7700 3800 7700 3950
+Wire Wire Line
+	7700 3950 8100 3950
+$Comp
+L power:+15V #PWR?
+U 1 1 60899120
+P 8950 2650
+F 0 "#PWR?" H 8950 2500 50  0001 C CNN
+F 1 "+15V" H 8965 2823 50  0000 C CNN
+F 2 "" H 8950 2650 50  0001 C CNN
+F 3 "" H 8950 2650 50  0001 C CNN
+	1    8950 2650
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	8700 4050 9150 4050
+Wire Wire Line
+	9150 4050 9150 3150
+Wire Wire Line
+	9150 3150 9350 3150
+Connection ~ 9150 4050
+Wire Wire Line
+	9150 4050 9350 4050
+Wire Wire Line
+	9150 4050 9150 5000
+Wire Wire Line
+	9150 5000 9350 5000
+Wire Wire Line
+	8950 2650 8950 2950
+Wire Wire Line
+	8950 2950 9350 2950
+Wire Wire Line
+	8950 2950 8950 3850
+Wire Wire Line
+	8950 3850 9350 3850
+Connection ~ 8950 2950
+Wire Wire Line
+	8950 3850 8950 4800
+Wire Wire Line
+	8950 4800 9350 4800
+Connection ~ 8950 3850
+Wire Wire Line
+	9650 1400 10000 1400
+Wire Wire Line
+	10000 1400 10000 1200
+Wire Wire Line
+	9450 2650 9650 2650
+Wire Wire Line
+	9650 2650 9650 2750
+Wire Wire Line
+	9450 3550 9650 3550
+Wire Wire Line
+	9650 3550 9650 3650
+Wire Wire Line
+	9450 4500 9650 4500
+Wire Wire Line
+	9650 4500 9650 4600
+Text HLabel 10250 3050 2    50   Output ~ 0
+V3A
+Text HLabel 10250 3950 2    50   Output ~ 0
+V3B
+Text HLabel 10250 4900 2    50   Output ~ 0
+V3C
+Wire Wire Line
+	10250 3050 9950 3050
+Wire Wire Line
+	9950 3950 10250 3950
+Wire Wire Line
+	9950 4900 10250 4900
+$Comp
+L Device:C_Small C?
+U 1 1 608BDD53
+P 8100 1650
+F 0 "C?" H 8192 1696 50  0000 L CNN
+F 1 "100n" H 8192 1605 50  0000 L CNN
+F 2 "" H 8100 1650 50  0001 C CNN
+F 3 "~" H 8100 1650 50  0001 C CNN
+	1    8100 1650
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C_Small C?
+U 1 1 608BE390
+P 10000 1650
+F 0 "C?" H 10092 1696 50  0000 L CNN
+F 1 "100n" H 10092 1605 50  0000 L CNN
+F 2 "" H 10000 1650 50  0001 C CNN
+F 3 "~" H 10000 1650 50  0001 C CNN
+	1    10000 1650
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	8100 1250 8100 1400
+Wire Wire Line
+	8100 1400 8650 1400
+Wire Wire Line
+	8100 1400 8100 1550
+Connection ~ 8100 1400
+Wire Wire Line
+	8650 1500 8550 1500
+Wire Wire Line
+	8550 1500 8550 1850
+Wire Wire Line
+	8100 1750 8100 1850
+Wire Wire Line
+	8100 1850 8550 1850
+Connection ~ 8550 1850
+Wire Wire Line
+	8550 1850 8550 1950
+Wire Wire Line
+	8550 1850 10000 1850
+Wire Wire Line
+	10000 1850 10000 1750
+Wire Wire Line
+	10000 1550 10000 1400
+Connection ~ 10000 1400
+$Comp
+L Analog_Switch:MAX333A U?
+U 5 1 608D4DC6
+P 5600 1400
+F 0 "U?" V 5283 1400 50  0000 C CNN
+F 1 "MAX333A" V 5374 1400 50  0000 C CNN
+F 2 "" H 5600 1400 50  0001 C CNN
+F 3 "https://datasheets.maximintegrated.com/en/ds/MAX333A.pdf" H 5600 1400 50  0001 C CNN
+	5    5600 1400
+	0    1    1    0   
+$EndComp
+$Comp
+L astrocam:-7.5V #PWR?
+U 1 1 608D4DCC
+P 4550 1250
+F 0 "#PWR?" H 4550 1350 50  0001 C CNN
+F 1 "-7.5V" H 4565 1423 50  0000 C CNN
+F 2 "" H 4550 1250 50  0001 C CNN
+F 3 "" H 4550 1250 50  0001 C CNN
+	1    4550 1250
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 608D4DD2
+P 5000 1950
+F 0 "#PWR?" H 5000 1700 50  0001 C CNN
+F 1 "GND" H 5005 1777 50  0000 C CNN
+F 2 "" H 5000 1950 50  0001 C CNN
+F 3 "" H 5000 1950 50  0001 C CNN
+	1    5000 1950
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+15V #PWR?
+U 1 1 608D4DD8
+P 6450 1200
+F 0 "#PWR?" H 6450 1050 50  0001 C CNN
+F 1 "+15V" H 6465 1373 50  0000 C CNN
+F 2 "" H 6450 1200 50  0001 C CNN
+F 3 "" H 6450 1200 50  0001 C CNN
+	1    6450 1200
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6100 1400 6450 1400
+Wire Wire Line
+	6450 1400 6450 1200
+$Comp
+L Device:C_Small C?
+U 1 1 608D4DE0
+P 4550 1650
+F 0 "C?" H 4642 1696 50  0000 L CNN
+F 1 "100n" H 4642 1605 50  0000 L CNN
+F 2 "" H 4550 1650 50  0001 C CNN
+F 3 "~" H 4550 1650 50  0001 C CNN
+	1    4550 1650
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C_Small C?
+U 1 1 608D4DE6
+P 6450 1650
+F 0 "C?" H 6542 1696 50  0000 L CNN
+F 1 "100n" H 6542 1605 50  0000 L CNN
+F 2 "" H 6450 1650 50  0001 C CNN
+F 3 "~" H 6450 1650 50  0001 C CNN
+	1    6450 1650
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4550 1250 4550 1400
+Wire Wire Line
+	4550 1400 5100 1400
+Wire Wire Line
+	4550 1400 4550 1550
+Connection ~ 4550 1400
+Wire Wire Line
+	5100 1500 5000 1500
+Wire Wire Line
+	5000 1500 5000 1850
+Wire Wire Line
+	4550 1750 4550 1850
+Wire Wire Line
+	4550 1850 5000 1850
+Connection ~ 5000 1850
+Wire Wire Line
+	5000 1850 5000 1950
+Wire Wire Line
+	5000 1850 6450 1850
+Wire Wire Line
+	6450 1850 6450 1750
+Wire Wire Line
+	6450 1550 6450 1400
+Connection ~ 6450 1400
+$Comp
+L Analog_Switch:MAX333A U?
+U 5 1 608DE5A8
+P 2200 1450
+F 0 "U?" V 1883 1450 50  0000 C CNN
+F 1 "MAX333A" V 1974 1450 50  0000 C CNN
+F 2 "" H 2200 1450 50  0001 C CNN
+F 3 "https://datasheets.maximintegrated.com/en/ds/MAX333A.pdf" H 2200 1450 50  0001 C CNN
+	5    2200 1450
+	0    1    1    0   
+$EndComp
+$Comp
+L astrocam:-7.5V #PWR?
+U 1 1 608DE5AE
+P 1150 1300
+F 0 "#PWR?" H 1150 1400 50  0001 C CNN
+F 1 "-7.5V" H 1165 1473 50  0000 C CNN
+F 2 "" H 1150 1300 50  0001 C CNN
+F 3 "" H 1150 1300 50  0001 C CNN
+	1    1150 1300
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 608DE5B4
+P 1600 2000
+F 0 "#PWR?" H 1600 1750 50  0001 C CNN
+F 1 "GND" H 1605 1827 50  0000 C CNN
+F 2 "" H 1600 2000 50  0001 C CNN
+F 3 "" H 1600 2000 50  0001 C CNN
+	1    1600 2000
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+15V #PWR?
+U 1 1 608DE5BA
+P 3050 1250
+F 0 "#PWR?" H 3050 1100 50  0001 C CNN
+F 1 "+15V" H 3065 1423 50  0000 C CNN
+F 2 "" H 3050 1250 50  0001 C CNN
+F 3 "" H 3050 1250 50  0001 C CNN
+	1    3050 1250
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2700 1450 3050 1450
+Wire Wire Line
+	3050 1450 3050 1250
+$Comp
+L Device:C_Small C?
+U 1 1 608DE5C2
+P 1150 1700
+F 0 "C?" H 1242 1746 50  0000 L CNN
+F 1 "100n" H 1242 1655 50  0000 L CNN
+F 2 "" H 1150 1700 50  0001 C CNN
+F 3 "~" H 1150 1700 50  0001 C CNN
+	1    1150 1700
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C_Small C?
+U 1 1 608DE5C8
+P 3050 1700
+F 0 "C?" H 3142 1746 50  0000 L CNN
+F 1 "100n" H 3142 1655 50  0000 L CNN
+F 2 "" H 3050 1700 50  0001 C CNN
+F 3 "~" H 3050 1700 50  0001 C CNN
+	1    3050 1700
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1150 1300 1150 1450
+Wire Wire Line
+	1150 1450 1700 1450
+Wire Wire Line
+	1150 1450 1150 1600
+Connection ~ 1150 1450
+Wire Wire Line
+	1700 1550 1600 1550
+Wire Wire Line
+	1600 1550 1600 1900
+Wire Wire Line
+	1150 1800 1150 1900
+Wire Wire Line
+	1150 1900 1600 1900
+Connection ~ 1600 1900
+Wire Wire Line
+	1600 1900 1600 2000
+Wire Wire Line
+	1600 1900 3050 1900
+Wire Wire Line
+	3050 1900 3050 1800
+Wire Wire Line
+	3050 1600 3050 1450
+Connection ~ 3050 1450
+$EndSCHEMATC

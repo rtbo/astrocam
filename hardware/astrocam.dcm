@@ -1,0 +1,44 @@
+EESchema-DOCLIB  Version 2.0
+#
+$CMP -7.5V
+D Power symbol creates a global label with name "-8V"
+K power-flag
+$ENDCMP
+#
+$CMP AD9945
+D Complete 12-Bit 40 MHz CCD Signal Processor
+K CCD Analog Front End
+F https://www.analog.com/media/en/technical-documentation/data-sheets/AD9945.PDF
+$ENDCMP
+#
+$CMP CAV24C32W
+D 32-Kb I2C CMOS EEPROM
+$ENDCMP
+#
+$CMP DMG2305UX
+D P-Channel Enhancement MOSFET
+$ENDCMP
+#
+$CMP DP_3POS_SW
+D 3 Position switch - Dual pole
+$ENDCMP
+#
+$CMP ICX282AK
+D Diagonal 11mm (Type 2/3) Frame Readout CCD Image Sensor with Square Pixel for Color Cameras
+F http://pdf.datasheetcatalog.com/datasheet/sony/a6803029.pdf
+$ENDCMP
+#
+$CMP LM2678-5
+D Step down voltage regulator - Simple switcher
+$ENDCMP
+#
+$CMP PE-65301
+D Flyback transformer
+$ENDCMP
+#
+$CMP iCE40HX1K-VQ100
+D FPGA iCE40 HX 1280 Cells 256MHz VTQFP100
+F http://www.latticesemi.com/~/media/LatticeSemi/Documents/DataSheets/iCE/iCE40LPHXFamilyDataSheet.pdf
+$ENDCMP
+#
+#End Doc Library
