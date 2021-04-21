@@ -6,19 +6,15 @@ module tool;
 import std.algorithm;
 import std.array;
 import std.file;
+import std.json;
 import std.path;
 import std.process;
 import std.stdio;
 
 // Commands recognized by this tool
 const commands = ["import", "make", "run", "wave", "clean"];
-// Targets recognized by this tool
-const targets = ["horizontal_drive_tb"];
-
 const defaultCmds = ["import", "make"];
-const defaultTargets = ["horizontal_drive_tb"];
-
-const ghdlFlags = ["--workdir=work", "--work=astrocam", "--std=08"];
+const workDir = "work";
 
 int usage(string prog, int result = 0, File output = stdout)
 {
@@ -37,7 +33,7 @@ int usage(string prog, int result = 0, File output = stdout)
     output.writefln(
             "If more than one target is provided, the commands are executed for each of them.");
     output.writefln("If no command is provided, \"make run\" is assumed by default.");
-    output.writefln("If no target is provided, \"ccd_drive_tb\" is assumed by default.");
+    output.writefln("If no target is provided, default is assumed from tool.json.");
     output.writefln("Additional arguments can be provided to the underlying tool after \"--\" "
             ~ "(Only works with single command).");
     return result;
@@ -60,10 +56,40 @@ int command(string[] cmd)
     return spawnProcess(cmd).wait();
 }
 
+struct Target
+{
+    string name;
+    string vcdFilename;
+    bool isDefault;
+}
+
 int main(string[] args)
 {
+    const thisFile = __FILE_FULL_PATH__;
+    const thisDir = dirName(thisFile);
+    const thisExe = thisExePath;
+
+    if (timeLastModified(thisFile) > timeLastModified(thisExe)) {
+        stderr.writeln("WARNING: tool.d was modified but no recompiled.");
+    }
+
+    Target[string] targets;
+
+    auto json = parseJSON(cast(const(string))read(buildPath(thisDir, "tool.json")));
+    foreach (string name, JSONValue js; json["targets"])
+    {
+        Target target;
+        target.name = name;
+        if (!js["vcd"].isNull && js["vcd"].boolean) {
+            target.vcdFilename = buildPath(thisDir, workDir, name.replace("_", "-") ~ ".vcd");
+        }
+        target.isDefault = !js["default"].isNull && js["default"].boolean;
+        targets[name] = target;
+    }
+    const ghdlFlags = json["ghdl_flags"].array.map!(js => js.str).array;
+
     string[] cmds;
-    string[] tgts;
+    Target[] tgts;
     string[] additionalArgs;
 
     foreach (i, arg; args[1 .. $])
@@ -93,9 +119,9 @@ int main(string[] args)
         {
             cmds ~= arg;
         }
-        else if (targets.canFind(arg))
+        else if (arg in targets)
         {
-            tgts ~= arg;
+            tgts ~= targets[arg];
         }
         else
         {
@@ -110,14 +136,11 @@ int main(string[] args)
     }
     if (!tgts)
     {
-        tgts = defaultTargets.dup;
+        tgts = targets.values.filter!"a.isDefault".array;
     }
 
     const ghdl = environment.get("GHDL", "ghdl");
     const gtkwave = environment.get("GTKWAVE", "gtkwave");
-
-    // mapping of target to VCD file
-    const vcds = ["horizontal_drive_tb" : "horizontal-drive.vcd"];
 
     if (!exists("work"))
     {
@@ -139,10 +162,10 @@ int main(string[] args)
         {
             foreach (tgt; tgts)
             {
-                const code = command([ghdl, "make"] ~ ghdlFlags ~ tgt);
+                const code = command([ghdl, "make"] ~ ghdlFlags ~ tgt.name);
                 if (code != 0)
                 {
-                    stderr.writefln("error during make command of %s", tgt);
+                    stderr.writefln("error during make command of %s", tgt.name);
                     return code;
                 }
             }
@@ -151,14 +174,14 @@ int main(string[] args)
         {
             foreach (tgt; tgts)
             {
-                auto c = [ghdl, "run"] ~ ghdlFlags ~ tgt;
-                auto p = tgt in vcds;
-                if (p)
-                    c ~= "--vcd=" ~ *p;
+                auto c = [ghdl, "run"] ~ ghdlFlags ~ tgt.name;
+                if (tgt.vcdFilename) {
+                    c ~= "--vcd=" ~ tgt.vcdFilename;
+                }
                 const code = command(c);
                 if (code != 0)
                 {
-                    stderr.writefln("error during run command of %s", tgt);
+                    stderr.writefln("error during run command of %s", tgt.name);
                     return code;
                 }
             }
@@ -170,22 +193,22 @@ int main(string[] args)
                 stderr.writefln("GtkWave can only be called with 1 target");
                 return 3;
             }
-            if (!(tgts[0] in vcds))
+            if (!tgts[0].vcdFilename)
             {
                 stderr.writefln("No wave data for this target");
                 return 4;
             }
-            const code = command([gtkwave, vcds[tgts[0]]]);
+            const code = command([gtkwave, tgts[0].vcdFilename]);
             if (code != 0)
             {
-                stderr.writefln("error during wave command of %s", tgts[0]);
+                stderr.writefln("error during wave command of %s", tgts[0].name);
                 return code;
             }
         }
         else if (cmd == "clean")
         {
             rmdirRecurse("work");
-            const patterns = ["*.vcd", "*.o"] ~ targets;
+            const patterns = ["*.vcd", "*.o"] ~ targets.keys;
             string[] toremove;
 
             foreach (entry; dirEntries(".", SpanMode.breadth))
