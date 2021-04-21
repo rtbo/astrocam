@@ -13,10 +13,10 @@ import std.stdio;
 // Commands recognized by this tool
 const commands = ["import", "make", "run", "wave", "clean"];
 // Targets recognized by this tool
-const targets = ["ccd_drive_tb"];
+const targets = ["horizontal_drive_tb"];
 
 const defaultCmds = ["import", "make"];
-const defaultTargets = ["ccd_drive_tb"];
+const defaultTargets = ["horizontal_drive_tb"];
 
 const ghdlFlags = ["--workdir=work", "--work=astrocam", "--std=08"];
 
@@ -117,7 +117,7 @@ int main(string[] args)
     const gtkwave = environment.get("GTKWAVE", "gtkwave");
 
     // mapping of target to VCD file
-    const vcds = ["ccd_drive_tb" : "ccd-drive.vcd"];
+    const vcds = ["horizontal_drive_tb" : "horizontal-drive.vcd"];
 
     if (!exists("work"))
     {

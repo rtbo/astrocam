@@ -1,6 +1,6 @@
 #!/bin/sh
 
-LDC=$(which ldc32 2> /dev/null)
+LDC=$(which ldc 2> /dev/null)
 DMD=$(which dmd 2> /dev/null)
 
 if [ -x "$LDC" ]; then

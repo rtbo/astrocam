@@ -25,10 +25,4 @@ package icx282 is
     constant H_CLK_COUNT : integer := H_PIXELS + H_DUMMY + H_VSYNC;           -- number of clock cycles per line
     constant H_CLK_BITS  : integer := integer(ceil(log2(real(H_CLK_COUNT)))); -- number of bits to hold the horizontal counter
 
-    subtype h_count_t is integer range 0 to H_CLK_COUNT - 1;            -- integer to store the horizontal counter
-    subtype h_count_bus_t is unsigned(H_CLK_BITS - 1 downto 0); -- signal bus to store the horizontal counter
-    -- subtype h_count_bus_t is unsigned; -- signal bus to store the horizontal counter
-
-
-    type v_seq_t is (Reg, SeqA, SeqB, SeqC, SeqD); -- the different sequences in the vertical driver
 end package;
