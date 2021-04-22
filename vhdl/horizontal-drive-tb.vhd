@@ -4,6 +4,7 @@ use ieee.numeric_std.all;
 library astrocam;
 use astrocam.icx282.all;
 use astrocam.types.all;
+use astrocam.horizontal_drive;
 
 use std.textio.all;
 use std.env.finish;
@@ -13,66 +14,54 @@ end horizontal_drive_tb;
 
 architecture sim of horizontal_drive_tb is
 
-  constant clk_hz     : integer := 22500e3;
-  constant clk_period : time    := 1 sec / clk_hz;
-
   signal clk     : std_logic := '1';
   signal rst     : std_logic := '1';
-  signal en      : std_logic := '1';
-  signal drive   : h_drive_bus_t;
   signal counter : h_count_bus_t;
+  signal HD      : std_logic;
+  signal drive   : h_drive_bus_t;
 
-  component horizontal_drive is
-    port (
-      clk     : in std_logic;
-      rst     : in std_logic;
-      en      : in std_logic;
-      drive   : out h_drive_bus_t;
-      counter : out h_count_bus_t
-    );
-  end component;
+  constant T : time := CLK_PERIOD;
 
 begin
 
-  clk <= not clk after clk_period / 2;
+  clk <= not clk after T / 2;
 
-  DUT : horizontal_drive port map(
-    clk     => clk,
-    rst     => rst,
-    en      => en,
-    drive   => drive,
-    counter => counter
-  );
+  DUT : entity horizontal_drive(rtl)
+    port map(
+      clk     => clk,
+      rst     => rst,
+      counter => counter,
+      HD      => HD,
+      drive   => drive
+    );
 
   COUNTER_PROC : process is
   begin
-    wait for clk_period * 2;
-
-    assert counter = 0 severity failure;
-
     rst <= '0';
-
-    wait for clk_period * 10;
-    assert counter = 9 severity failure;
-
-    wait for clk_period * (H_CLK_COUNT - 10);
-    assert counter = H_CLK_COUNT - 1 severity failure;
-
-    wait for clk_period;
+    wait for T / 100; -- shift for ensuring signal established
     assert counter = 0 severity failure;
 
-    wait for clk_period * 10;
+    wait for T * 10;
     assert counter = 10 severity failure;
 
-    wait for clk_period * (H_CLK_COUNT - 11);
+    wait for T * (H_CLK_COUNT - 11);
     assert counter = H_CLK_COUNT - 1 severity failure;
 
-    wait for clk_period;
+    wait for T;
     assert counter = 0 severity failure;
 
-    wait for clk_period * 10;
+    wait for T * 10;
+    assert counter = 10 severity failure;
+
+    wait for T * (H_CLK_COUNT - 11);
+    assert counter = H_CLK_COUNT - 1 severity failure;
+
+    wait for T;
+    assert counter = 0 severity failure;
+
+    wait for T * 10;
     rst <= '1';
-    wait for clk_period;
+    wait for T;
     assert counter = 0 severity failure;
 
     report "simulation successful";
@@ -81,28 +70,42 @@ begin
 
   H12AB_PROC : process is
   begin
-    wait for clk_period * 2;
-    wait for clk_period / 100; -- wait signal established
-    assert drive.H1A = '1' and drive.H2A = '0' severity failure;
-    wait for clk_period / 2; -- wait clock low
-    assert drive.H1A = '0' and drive.H2A = '1' severity failure;
-    wait for clk_period / 2; -- wait clock high
-    wait for clk_period;
+    wait for T / 100; -- small shift to wait signal established
 
-    en <= '0';
-    wait for clk_period;
-    assert drive.H1A = '1' and drive.H2A = '0' severity failure;
-    wait for clk_period / 2; -- wait clock low
-    assert drive.H1A = '1' and drive.H2A = '0' severity failure;
-    wait for clk_period / 2; -- wait clock high
-    assert drive.H1A = '1' and drive.H2A = '0' severity failure;
-    wait for clk_period / 2; -- wait clock low
-    assert drive.H1A = '1' and drive.H2A = '0' severity failure;
-    wait for clk_period / 2; -- wait clock high
-    assert drive.H1A = '1' and drive.H2A = '0' severity failure;
+    for i in 1 to 62 loop
+      assert HD = '1' severity failure;
+      assert drive.H1A = '1' and drive.H2A = '0' severity failure;
+      assert drive.H1B = '1' and drive.H2B = '0' severity failure;
+      wait for T / 2; -- wait clock low
+      assert HD = '1' severity failure;
+      assert drive.H1A = '0' and drive.H2A = '1' severity failure;
+      assert drive.H1B = '0' and drive.H2B = '1' severity failure;
+      wait for T / 2; -- wait clock high
+    end loop;
 
-    en <= '1';
-    wait for clk_period * (H_CLK_COUNT * 2 - 7);
+    for i in 1 to 208 loop
+      assert HD = '0' severity failure;
+      assert drive.H1A = '1' and drive.H2A = '0' severity failure;
+      assert drive.H1B = '1' and drive.H2B = '0' severity failure;
+      wait for T / 2; -- wait clock low
+      assert HD = '0' severity failure;
+      assert drive.H1A = '1' and drive.H2A = '0' severity failure;
+      assert drive.H1B = '1' and drive.H2B = '0' severity failure;
+      wait for T / 2; -- wait clock high
+    end loop;
+
+    for i in 1 to H_CLK_COUNT - 270 loop
+      assert HD = '1' severity failure;
+      assert drive.H1A = '1' and drive.H2A = '0' severity failure;
+      assert drive.H1B = '1' and drive.H2B = '0' severity failure;
+      wait for T / 2; -- wait clock low
+      assert HD = '1' severity failure;
+      assert drive.H1A = '0' and drive.H2A = '1' severity failure;
+      assert drive.H1B = '0' and drive.H2B = '1' severity failure;
+      wait for T / 2; -- wait clock high
+    end loop;
+
+    wait for H_CLK_COUNT * T;
     finish;
   end process H12AB_PROC;
 

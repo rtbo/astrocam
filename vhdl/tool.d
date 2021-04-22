@@ -147,11 +147,13 @@ int main(string[] args)
         mkdir("work");
     }
 
+    int exitCode = 0;
+
     foreach (cmd; cmds)
     {
         if (cmd == "import")
         {
-            const code = command([ghdl, "import"] ~ ghdlFlags ~ allVhdFiles);
+            const code = command([ghdl, "import"] ~ ghdlFlags ~ allVhdFiles ~ additionalArgs);
             if (code != 0)
             {
                 stderr.writeln("error during import command");
@@ -162,7 +164,7 @@ int main(string[] args)
         {
             foreach (tgt; tgts)
             {
-                const code = command([ghdl, "make"] ~ ghdlFlags ~ tgt.name);
+                const code = command([ghdl, "make"] ~ ghdlFlags ~ tgt.name ~ additionalArgs);
                 if (code != 0)
                 {
                     stderr.writefln("error during make command of %s", tgt.name);
@@ -178,12 +180,13 @@ int main(string[] args)
                 if (tgt.waveFilename) {
                     c ~= "--wave=" ~ tgt.waveFilename;
                 }
-                const code = command(c);
+                const code = command(c ~ additionalArgs);
+                // failing run do not abort
                 if (code != 0)
                 {
                     stderr.writefln("error during run command of %s", tgt.name);
-                    return code;
                 }
+                exitCode += code;
             }
         }
         else if (cmd == "wave")
@@ -198,7 +201,7 @@ int main(string[] args)
                 stderr.writefln("No wave data for this target");
                 return 4;
             }
-            const code = command([gtkwave, tgts[0].waveFilename]);
+            const code = command([gtkwave, tgts[0].waveFilename] ~ additionalArgs);
             if (code != 0)
             {
                 stderr.writefln("error during wave command of %s", tgts[0].name);
@@ -226,5 +229,5 @@ int main(string[] args)
         }
     }
 
-    return 0;
+    return exitCode;
 }

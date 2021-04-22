@@ -22,7 +22,11 @@ package icx282 is
     constant H_EFF_PIXELS : integer := H_PIXELS - H_IGN_LEFT - H_IGN_RIGHT;
     constant V_EFF_PIXELS : integer := V_PIXELS - V_IGN_BOTTOM - V_IGN_TOP;
 
-    constant H_CLK_COUNT : integer := H_PIXELS + H_DUMMY + H_VSYNC;           -- number of clock cycles per line
-    constant H_CLK_BITS  : integer := integer(ceil(log2(real(H_CLK_COUNT)))); -- number of bits to hold the horizontal counter
+    constant H_CLK_COUNT  : integer := H_PIXELS + H_DUMMY + H_VSYNC;           -- number of clock cycles per line
+    constant H_CLK_BITS   : integer := integer(ceil(log2(real(H_CLK_COUNT)))); -- number of bits to hold the horizontal counter
+    constant H_VSYNC_BITS : integer := integer(ceil(log2(real(H_VSYNC))));     -- number of bits to hold the vsync counter
+
+    constant CLK_HZ     : integer := 22500e3;
+    constant CLK_PERIOD : time    := 1 sec / CLK_HZ;
 
 end package;

@@ -8,6 +8,10 @@
         "horizontal_drive_tb": {
             "wave": true,
             "default": true
+        },
+        "vertical_drive_line_tb": {
+            "wave": true,
+            "default": true
         }
     }
 }

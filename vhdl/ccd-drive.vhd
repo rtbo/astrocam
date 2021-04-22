@@ -36,6 +36,7 @@ architecture structural of ccd_drive is
       clk     : in std_logic;
       rst     : in std_logic;
       h_count : in h_count_t;
+      h_en    : out std_logic;
       drive   : out v_drive_bus_t
     );
   end component vertical_drive;
@@ -56,6 +57,7 @@ begin
     clk       => clk,
     rst       => rst,
     h_counter => h_counter,
+    h_en      => h_en,
     drive     => v_drive
   );
 
