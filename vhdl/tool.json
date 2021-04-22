@@ -6,7 +6,7 @@
     "ghdl_flags": ["--workdir=work", "--work=astrocam", "--std=08"],
     "targets": {
         "horizontal_drive_tb": {
-            "vcd": true,
+            "wave": true,
             "default": true
         }
     }

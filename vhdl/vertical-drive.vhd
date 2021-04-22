@@ -10,10 +10,6 @@ entity vertical_drive is
     clk     : in std_logic;
     rst     : in std_logic;
     h_count : in h_count_t;
-    seq_a   : in std_logic;
-    seq_b   : in std_logic;
-    seq_c   : in std_logic;
-    seq_d   : in std_logic;
     drive   : out v_drive_bus_t
   );
 end entity vertical_drive;

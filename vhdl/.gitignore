@@ -1,5 +1,4 @@
 work/
 *.o
-*.vcd
 tool
-ccd_drive_tb
+*_tb

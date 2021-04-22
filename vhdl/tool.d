@@ -24,7 +24,7 @@ int usage(string prog, int result = 0, File output = stdout)
     output.writefln("  import          Import source files");
     output.writefln("  make [TARGETS]  Build targets");
     output.writefln("  run [TARGETS]   Run simulation targets");
-    output.writefln("  wave [TARGET]   Run GTKWave for the VCD file associated to target");
+    output.writefln("  wave [TARGET]   Run GTKWave for the GHW file associated to target");
     output.writefln("  imr [TARGETS]   Shortcut for \"import make run [TARGET]\"");
     output.writefln("  mr [TARGETS]    Shortcut for \"make run [TARGET]\"");
     output.writefln("  mrw [TARGET]    Shortcut for \"make run wave [TARGET]\"");
@@ -59,7 +59,7 @@ int command(string[] cmd)
 struct Target
 {
     string name;
-    string vcdFilename;
+    string waveFilename;
     bool isDefault;
 }
 
@@ -80,8 +80,8 @@ int main(string[] args)
     {
         Target target;
         target.name = name;
-        if (!js["vcd"].isNull && js["vcd"].boolean) {
-            target.vcdFilename = buildPath(thisDir, workDir, name.replace("_", "-") ~ ".vcd");
+        if (!js["wave"].isNull && js["wave"].boolean) {
+            target.waveFilename = buildPath(thisDir, workDir, name.replace("_", "-") ~ ".ghw");
         }
         target.isDefault = !js["default"].isNull && js["default"].boolean;
         targets[name] = target;
@@ -175,8 +175,8 @@ int main(string[] args)
             foreach (tgt; tgts)
             {
                 auto c = [ghdl, "run"] ~ ghdlFlags ~ tgt.name;
-                if (tgt.vcdFilename) {
-                    c ~= "--vcd=" ~ tgt.vcdFilename;
+                if (tgt.waveFilename) {
+                    c ~= "--wave=" ~ tgt.waveFilename;
                 }
                 const code = command(c);
                 if (code != 0)
@@ -193,12 +193,12 @@ int main(string[] args)
                 stderr.writefln("GtkWave can only be called with 1 target");
                 return 3;
             }
-            if (!tgts[0].vcdFilename)
+            if (!tgts[0].waveFilename)
             {
                 stderr.writefln("No wave data for this target");
                 return 4;
             }
-            const code = command([gtkwave, tgts[0].vcdFilename]);
+            const code = command([gtkwave, tgts[0].waveFilename]);
             if (code != 0)
             {
                 stderr.writefln("error during wave command of %s", tgts[0].name);
@@ -208,7 +208,7 @@ int main(string[] args)
         else if (cmd == "clean")
         {
             rmdirRecurse("work");
-            const patterns = ["*.vcd", "*.o"] ~ targets.keys;
+            const patterns = ["*.ghw", "*.o"] ~ targets.keys;
             string[] toremove;
 
             foreach (entry; dirEntries(".", SpanMode.breadth))
