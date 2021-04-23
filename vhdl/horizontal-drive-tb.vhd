@@ -1,13 +1,13 @@
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
-library astrocam;
-use astrocam.icx282.all;
-use astrocam.types.all;
-use astrocam.horizontal_drive;
 
 use std.textio.all;
 use std.env.finish;
+
+use work.icx282.all;
+use work.types.all;
+use work.horizontal_drive;
 
 entity horizontal_drive_tb is
 end horizontal_drive_tb;

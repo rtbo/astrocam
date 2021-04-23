@@ -1,14 +1,14 @@
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
-library astrocam;
-use astrocam.icx282.all;
-use astrocam.types.all;
-use astrocam.vertical_drive;
-use astrocam.horizontal_drive;
 
 use std.textio.all;
 use std.env.finish;
+
+use work.icx282.all;
+use work.types.all;
+use work.vertical_drive;
+use work.horizontal_drive;
 
 entity vertical_drive_line_tb is
 end vertical_drive_line_tb;

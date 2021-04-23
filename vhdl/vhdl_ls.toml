@@ -1,4 +1,4 @@
 [libraries]
-astrocam.files = [
+work.files = [
   '*.vhd',
 ]

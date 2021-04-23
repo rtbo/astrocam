@@ -3,7 +3,7 @@
         "configuration file for tool",
         "avoids to hard code this in the code and recompile"
     ],
-    "ghdl_flags": ["--workdir=work", "--work=astrocam", "--std=08"],
+    "ghdl_flags": ["--workdir=work", "--std=08"],
     "targets": {
         "horizontal_drive_tb": {
             "wave": true,

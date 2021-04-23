@@ -2,15 +2,18 @@
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
-library astrocam;
-use astrocam.icx282.all;
-use astrocam.types.all;
+
+use work.icx282.all;
+use work.types.all;
+use work.horizontal_drive;
+use work.vertical_drive;
 
 entity ccd_drive is
 
   port (
     clk     : in std_logic;
     rst     : in std_logic;
+    v_seq   : in v_seq_t;
     h_drive : out h_drive_bus_t;
     v_drive : out v_drive_bus_t
   );
@@ -18,47 +21,28 @@ end ccd_drive;
 
 architecture structural of ccd_drive is
 
-  signal h_en      : std_logic;
+  signal h_HD      : std_logic;
   signal h_counter : h_count_bus_t;
-
-  component horizontal_drive is
-    port (
-      clk     : in std_logic;
-      rst     : in std_logic;
-      en      : in std_logic;
-      drive   : out h_drive_bus_t;
-      counter : out h_count_bus_t
-    );
-  end component horizontal_drive;
-
-  component vertical_drive is
-    port (
-      clk     : in std_logic;
-      rst     : in std_logic;
-      h_count : in h_count_t;
-      h_en    : out std_logic;
-      drive   : out v_drive_bus_t
-    );
-  end component vertical_drive;
 
 begin
 
-  H_DRV_COMP : horizontal_drive
-  port map(
-    clk     => clk,
-    rst     => rst,
-    en      => h_en,
-    drive   => h_drive,
-    counter => h_counter
-  );
+  H_DRV_COMP : entity horizontal_drive(rtl)
+    port map(
+      clk     => clk,
+      rst     => rst,
+      counter => h_counter,
+      HD      => h_HD,
+      drive   => h_drive
+    );
 
-  V_DRV_COMP : vertical_drive
-  port map(
-    clk       => clk,
-    rst       => rst,
-    h_counter => h_counter,
-    h_en      => h_en,
-    drive     => v_drive
-  );
+  V_DRV_COMP : entity vertical_drive(rtl)
+    port map(
+      clk       => clk,
+      rst       => rst,
+      h_counter => h_counter,
+      h_HD      => h_HD,
+      seq       => v_seq,
+      drive     => v_drive
+    );
 
 end architecture structural;
