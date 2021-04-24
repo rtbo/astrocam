@@ -7,13 +7,13 @@ use std.env.finish;
 
 use work.icx282.all;
 use work.types.all;
-use work.vertical_drive;
 use work.horizontal_drive;
+use work.vertical_drive;
 
-entity vertical_drive_line_tb is
-end vertical_drive_line_tb;
+entity vertical_drive_Line_tb is
+end vertical_drive_Line_tb;
 
-architecture sim of vertical_drive_line_tb is
+architecture sim of vertical_drive_Line_tb is
 
   signal clk : std_logic := '1';
   signal rst : std_logic := '1';
@@ -22,7 +22,7 @@ architecture sim of vertical_drive_line_tb is
   signal h_HD      : std_logic;
   signal h_drv     : h_drive_bus_t;
 
-  signal seq   : v_seq_t := LineDrv;
+  signal mode  : v_mode_t := VModeLine;
   signal drive : v_drive_bus_t;
 
   -- concatenation of XV1, XV2, XV3, XV4
@@ -36,7 +36,6 @@ begin
 
   clk <= not clk after T / 2;
   rst <= '1', '0' after T / 2;
-  seq <= LineDrv;
 
   XV    <= drive.XV1 & drive.XV2 & drive.XV3 & drive.XV4;
   XV13Z <= drive.XV1A & drive.XV1B & drive.XV1C & drive.XV3A & drive.XV3B & drive.XV3C;
@@ -56,7 +55,7 @@ begin
       rst       => rst,
       h_counter => h_counter,
       h_HD      => h_HD,
-      seq       => seq,
+      mode      => mode,
       drive     => drive
     );
 
@@ -131,13 +130,13 @@ begin
   end process;
 
   -- XV1Z and XV3Z must all be 0
-  XV13Z_CHECK_PROC : process is
-  begin
-    wait for T / 100; -- offset a bit to get established signals
-    for i in 1 to H_CLK_COUNT loop
-      assert XV13Z = "000000" severity failure;
-      wait for T;
-    end loop;
-  end process XV13Z_CHECK_PROC;
+  -- XV13Z_CHECK_PROC : process is
+  -- begin
+  --   wait for T / 100; -- offset a bit to get established signals
+  --   for i in 1 to H_CLK_COUNT loop
+  --     assert XV13Z = "000000" severity failure;
+  --     wait for T;
+  --   end loop;
+  -- end process XV13Z_CHECK_PROC;
 
 end architecture sim;

@@ -3,6 +3,7 @@ use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
 use work.icx282.all;
+use work.counter.all;
 
 package types is
 
@@ -20,14 +21,14 @@ package types is
     H2B : std_logic;
   end record h_drive_bus_t;
 
-  -- the different sequences in the vertical driver
+  -- the different modes in the vertical driver
   -- refer to ICX282 datasheet
-  type v_seq_t is (
-    LineDrv, -- regular line driving pattern
-    SeqA,    -- sequence "a" readout (transfer odd lines in vertical registers)
-    SeqB,    -- sequence "b" readout (transfer even lines in vertical registers)
-    SeqC,    -- sequence "c" driving pattern
-    SeqD     -- sequence "d" driving pattern
+  type v_mode_t is (
+    VModeLine, -- regular line driving pattern
+    VModeSeqA, -- sequence "a" readout (transfer odd lines in vertical registers)
+    VModeSeqB, -- sequence "b" readout (transfer even lines in vertical registers)
+    VModeSeqC, -- sequence "c" driving pattern
+    VModeSeqD  -- sequence "d" driving pattern
   );
 
   subtype v_sync_count_t is integer range 0 to H_VSYNC;
@@ -45,5 +46,18 @@ package types is
     XV3B : std_logic;
     XV3C : std_logic;
   end record v_drive_bus_t;
+
+  constant DEFAULT_VDRIVE : v_drive_bus_t := (
+    XV1    => '1',
+    XV2    => '1',
+    others => '0'
+  );
+
+  type v_drive_counter_t is record
+    XV1 : counter_t;
+    XV2 : counter_t;
+    XV3 : counter_t;
+    XV4 : counter_t;
+  end record v_drive_counter_t;
 
 end package;

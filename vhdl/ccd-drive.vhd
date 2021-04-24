@@ -13,10 +13,11 @@ entity ccd_drive is
   port (
     clk     : in std_logic;
     rst     : in std_logic;
-    v_seq   : in v_seq_t;
+    v_mode  : in v_mode_t;
     h_drive : out h_drive_bus_t;
     v_drive : out v_drive_bus_t
   );
+
 end ccd_drive;
 
 architecture structural of ccd_drive is
@@ -41,7 +42,7 @@ begin
       rst       => rst,
       h_counter => h_counter,
       h_HD      => h_HD,
-      seq       => v_seq,
+      mode      => v_mode,
       drive     => v_drive
     );
 
