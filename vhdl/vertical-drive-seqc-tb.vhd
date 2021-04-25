@@ -10,10 +10,10 @@ use work.types.all;
 use work.horizontal_drive;
 use work.vertical_drive;
 
-entity vertical_drive_Line_tb is
-end vertical_drive_Line_tb;
+entity vertical_drive_SeqC_tb is
+end vertical_drive_SeqC_tb;
 
-architecture sim of vertical_drive_Line_tb is
+architecture sim of vertical_drive_SeqC_tb is
 
   signal clk : std_logic := '1';
   signal rst : std_logic := '1';
@@ -22,7 +22,7 @@ architecture sim of vertical_drive_Line_tb is
   signal h_HD      : std_logic;
   signal h_drv     : h_drive_bus_t;
 
-  signal mode  : v_mode_t := VModeLine;
+  signal mode  : v_mode_t := VModeSeqC;
   signal drive : v_drive_bus_t;
 
   -- concatenation of XV1, XV2, XV3, XV4
@@ -68,61 +68,36 @@ begin
 
     -- #2 through #62 included
     for i in 1 to 61 loop
-      assert XV = "1100" severity failure;
+      assert XV = "1100" report "XV should be 1100 but is " & to_string(XV) severity failure;
       wait for T;
     end loop;
 
-    -- #63 through #89 included
-    for i in 1 to 27 loop
-      assert XV = "1110" severity failure;
-      wait for T;
+    for i in 1 to 1970 loop
+
+      for j in 1 to 26 loop
+        assert XV = "0110" report "XV should be 0110 but is " & to_string(XV) severity failure;
+        wait for T;
+      end loop;
+
+      for j in 1 to 26 loop
+        assert XV = "0011" report "XV should be 0011 but is " & to_string(XV) severity failure;
+        wait for T;
+      end loop;
+
+      for j in 1 to 26 loop
+        assert XV = "1001" report "XV should be 1001 but is " & to_string(XV) severity failure;
+        wait for T;
+      end loop;
+
+      for j in 1 to 26 loop
+        assert XV = "1100" report "XV should be 1100 but is " & to_string(XV) severity failure;
+        wait for T;
+      end loop;
+
     end loop;
 
-    -- #90 through #115 included
-    for i in 1 to 26 loop
-      assert XV = "0110" severity failure;
-      wait for T;
-    end loop;
-
-    -- #116 through #141 included
-    for i in 1 to 26 loop
-      assert XV = "0111" severity failure;
-      wait for T;
-    end loop;
-
-    -- #142 through #166 included
-    for i in 1 to 25 loop
-      assert XV = "0011" severity failure;
-      wait for T;
-    end loop;
-
-    -- #167 through #193 included
-    for i in 1 to 27 loop
-      assert XV = "1011" severity failure;
-      wait for T;
-    end loop;
-
-    -- #194 through #219 included
-    for i in 1 to 26 loop
-      assert XV = "1001" severity failure;
-      wait for T;
-    end loop;
-
-    -- #220 through #245 included
-    for i in 1 to 26 loop
-      assert XV = "1101" severity failure;
-      wait for T;
-    end loop;
-
-    -- #246 through #270 included
-    for i in 1 to 25 loop
-      assert XV = "1100" severity failure;
-      wait for T;
-    end loop;
-
-    -- #270 until the end
-    for i in 1 to H_CLK_COUNT - 270 loop
-      assert XV = "1100" severity failure;
+    while h_counter /= 0 loop
+      assert XV = "1100" report "XV should be 1100 but is " & to_string(XV) severity failure;
       wait for T;
     end loop;
 
