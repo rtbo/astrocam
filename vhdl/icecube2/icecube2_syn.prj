@@ -8,12 +8,12 @@
 
 
 
-add_file -vhdl -lib work "../ccd-drive.vhd" 
-add_file -vhdl -lib work "../counter.vhd" 
-add_file -vhdl -lib work "../horizontal-drive.vhd" 
-add_file -vhdl -lib work "../icx282.vhd" 
-add_file -vhdl -lib work "../types.vhd" 
-add_file -vhdl -lib work "../vertical-drive.vhd" 
+add_file -vhdl -lib work "../src/ccd-drive.vhd" 
+add_file -vhdl -lib work "../src/counter.vhd" 
+add_file -vhdl -lib work "../src/horizontal-drive.vhd" 
+add_file -vhdl -lib work "../src/icx282.vhd" 
+add_file -vhdl -lib work "../src/types.vhd" 
+add_file -vhdl -lib work "../src/vertical-drive.vhd" 
 #implementation: "icecube2_Implmnt"
 impl -add icecube2_Implmnt -type fpga
 

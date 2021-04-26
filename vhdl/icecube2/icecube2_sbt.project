@@ -4,7 +4,7 @@ Version=Lattice Semiconductor Corporation iCEcube - Release: 2020.12.27943 - Bui
 ProjectName=icecube2
 Vendor=SiliconBlue
 Synthesis=synplify
-ProjectVFiles=../ccd-drive.vhd=work,../counter.vhd=work,../horizontal-drive.vhd=work,../icx282.vhd=work,../types.vhd=work,../vertical-drive.vhd=work
+ProjectVFiles=../src/ccd-drive.vhd=work,../src/counter.vhd=work,../src/horizontal-drive.vhd=work,../src/icx282.vhd=work,../src/types.vhd=work,../src/vertical-drive.vhd=work
 ProjectCFiles=
 CurImplementation=icecube2_Implmnt
 Implementations=icecube2_Implmnt

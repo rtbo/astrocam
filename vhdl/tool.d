@@ -39,10 +39,10 @@ int usage(string prog, int result = 0, File output = stdout)
     return result;
 }
 
-string[] allVhdFiles()
+string[] allVhdFiles(string thisDir)
 {
     string[] result;
-    foreach (entry; dirEntries(".", SpanMode.shallow))
+    foreach (entry; dirEntries(buildPath(thisDir, "src"), SpanMode.shallow))
     {
         if (entry.name.endsWith(".vhd"))
             result ~= entry.name;
@@ -153,7 +153,7 @@ int main(string[] args)
     {
         if (cmd == "import")
         {
-            const code = command([ghdl, "import"] ~ ghdlFlags ~ allVhdFiles ~ additionalArgs);
+            const code = command([ghdl, "import"] ~ ghdlFlags ~ allVhdFiles(thisDir) ~ additionalArgs);
             if (code != 0)
             {
                 stderr.writeln("error during import command");
