@@ -125,8 +125,8 @@ int main(string[] args)
         }
         else
         {
-            stderr.writefln("Error: Unknown operand: %s", arg);
-            return usage(args[0], 1, stderr);
+            stderr.writefln("Warning: Assuming '%s' as a target", arg);
+            tgts ~= Target(arg);
         }
     }
 
