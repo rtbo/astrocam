@@ -7,6 +7,35 @@ use work.counter.all;
 
 package types is
 
+  -- main driving phase
+  type frame_phase_t is (
+    PhaseIdle,     -- nothing to do
+    PhaseSht,      -- first phase after trigger during which the electronic shutter is pulsed
+    PhaseExposure, -- exposure phase - photons are collected in the pixels
+    PhaseReadout   -- pixel reading phase
+  );
+
+  -- shutter drive output bus
+  type shutter_drive_bus_t is record
+    -- substrate pulses (electronic shutter)
+    SUB : std_logic;
+    -- substracte control
+    SUBC : std_logic;
+    -- mechanical shutter
+    MECH : std_logic;
+  end record shutter_drive_bus_t;
+
+  -- count the number e-shutter pulses
+  subtype esht_count_t is unsigned(7 downto 0);
+  -- count the number of lines scan during the exposure
+  subtype exp_lines_count_t is unsigned(23 downto 0);
+
+  -- registry bus
+  type registry_bus_t is record
+    ESHT_PULS : esht_count_t;
+    EXP_LINES : exp_lines_count_t;
+  end record registry_bus_t;
+
   -- integer to store the horizontal counter
   subtype h_count_t is integer range 0 to H_CLK_COUNT - 1;
   -- signal bus to store the horizontal counter

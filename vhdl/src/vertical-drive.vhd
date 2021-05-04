@@ -74,10 +74,11 @@ begin
 
     -- procedure that define behavior of c and d
     procedure cd_procedure(
+      constant hcnt : integer;
       constant pulses : integer;
       constant width  : integer) is
     begin
-      if hcount = 62 and not counter_enabled(cd_counter) then
+      if hcnt = 62 and not counter_enabled(cd_counter) then
         -- each pulse is 4 times the width, we step the pulse counter every half period
         counter_enable(cd_counter, pulses * 4-1);
         drive.XV1 <= '0';
@@ -196,12 +197,12 @@ begin
 
       -- sequence "c"
       if mode = VModeSeqC then
-        cd_procedure(c_pulses, c_width);
+        cd_procedure(hcount, c_pulses, c_width);
       end if;
 
       -- sequence "d"
       if mode = VModeSeqD then
-        cd_procedure(d_pulses, d_width);
+        cd_procedure(hcount, d_pulses, d_width);
       end if;
 
     end if;

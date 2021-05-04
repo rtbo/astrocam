@@ -7,12 +7,13 @@
 -- The provided registers are the following
 --  address   register  width     Description
 --  0x00      SHT_PULS  8 bits    Amount of electronic shutter pulses before start of exposure - default 20
---  0x01      EXP_MS    24 bits   Exposure duration in ms (LSB) - default 100
+--  0x01      EXP_LINES 24 bits   Exposure duration in line scans (each line is app. 0.129ms) (LSB) - default 775 (100ms)
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
 use work.SPI_SLAVE;
+use work.types.all;
 
 entity registry is
   port (
@@ -24,8 +25,7 @@ entity registry is
     spi_mosi : in std_logic;  -- mosi line from the master
     spi_miso : out std_logic; -- miso line to the master
 
-    SHT_PULS : out unsigned(7 downto 0); -- address 0x00
-    EXP_MS   : out unsigned(23 downto 0) -- address 0x01 to 0x03
+    reg : out registry_bus_t -- output bus
   );
 end registry;
 
@@ -59,21 +59,26 @@ begin
       DOUT_VLD => spi_mosi_vld
     );
 
-  CONTENT_PROC : process (clk)
+  spi_miso_msg <= (others => '0');
+  spi_miso_vld <= '0';
+
+  CONTENT_PROC : process (clk, rst)
     variable address : integer;
   begin
     if rst then
       registry_content(7 downto 0)  <= to_unsigned(20, 8);
-      registry_content(31 downto 8) <= to_unsigned(100, 8);
-    elsif rising_edge(clk) and spi_mosi_vld = '1' then
-      address := to_integer(unsigned(spi_mosi_msg(7 downto 0))) * 8;
-      if address < 4 then
-        registry_content(address + 7 downto address) <= unsigned(spi_mosi_msg(15 downto 8));
+      registry_content(31 downto 8) <= to_unsigned(100, 24);
+    elsif rising_edge(clk) then
+      if spi_mosi_vld then
+        address := to_integer(unsigned(spi_mosi_msg(7 downto 0))) * 8;
+        if address < 4 then
+          registry_content(address + 7 downto address) <= unsigned(spi_mosi_msg(15 downto 8));
+        end if;
       end if;
     end if;
   end process;
 
-  SHT_PULS <= registry_content(7 downto 0);
-  EXP_MS   <= registry_content(31 downto 8);
+  reg.ESHT_PULS <= registry_content(7 downto 0);
+  reg.EXP_LINES <= registry_content(31 downto 8);
 
 end architecture;

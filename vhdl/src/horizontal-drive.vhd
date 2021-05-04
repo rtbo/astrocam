@@ -33,7 +33,7 @@ begin
       current_count := (current_count + 1) mod H_CLK_COUNT;
     end if;
     counter <= to_unsigned(current_count, H_CLK_BITS);
-    HD <= '0' when current_count >= 62 and current_count < 270 else '1';
+    HD      <= '0' when current_count >= 62 and current_count < 270 else '1';
   end process COUNTER_PROC;
 
   RG_PROC : drive.RG <= clk when rst = '0' else '0';

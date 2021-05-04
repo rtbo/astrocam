@@ -1,4 +1,4 @@
--- CCD driving signal generation
+-- Top level interface for CCD clock generation
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
@@ -11,19 +11,20 @@ use work.vertical_drive;
 entity ccd_drive is
 
   port (
-    clk     : in std_logic;
-    rst     : in std_logic;
-    v_mode  : in v_mode_t;
-    h_drive : out h_drive_bus_t;
-    v_drive : out v_drive_bus_t
+    clk       : in std_logic;      -- main driving clock
+    rst       : in std_logic;      -- global reset
+    en        : inout std_logic;   -- enabled flag to indicate when a frame is being processed
+    sht_drive : out std_logic;     -- shutter signal driver
+    h_drive   : out h_drive_bus_t; -- horizontal signal driver
+    v_drive   : out v_drive_bus_t  -- vertical signal driver
   );
 
 end ccd_drive;
 
 architecture structural of ccd_drive is
 
-  signal h_HD      : std_logic;
   signal h_counter : h_count_bus_t;
+  signal v_mode    : v_mode_t;
 
 begin
 
@@ -32,7 +33,6 @@ begin
       clk     => clk,
       rst     => rst,
       counter => h_counter,
-      HD      => h_HD,
       drive   => h_drive
     );
 
@@ -41,7 +41,6 @@ begin
       clk       => clk,
       rst       => rst,
       h_counter => h_counter,
-      h_HD      => h_HD,
       mode      => v_mode,
       drive     => v_drive
     );
