@@ -42,7 +42,7 @@ int usage(string prog, int result = 0, File output = stdout)
 string[] allVhdFiles(string thisDir)
 {
     string[] result;
-    foreach (entry; dirEntries(buildPath(thisDir, "src"), SpanMode.shallow))
+    foreach (entry; dirEntries(buildPath(thisDir, "src"), SpanMode.breadth))
     {
         if (entry.name.endsWith(".vhd"))
             result ~= entry.name;
